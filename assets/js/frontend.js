@@ -22,7 +22,9 @@
 
 			this.observe = function () {
 				validateInputs( this.list.root.getInputs(), true ).
-					then( () => {} ).
+					then( () => {
+						this.list.onChangeRelated();
+					} ).
 					catch( () => {} );
 
 				for ( const input of this.iterateInputs() ) {
@@ -34,7 +36,7 @@
 
 			this.isPassed = function () {
 				for ( const input of this.iterateInputs() ) {
-					if ( false !== input.reporting.validityState.current ) {
+					if ( true === input.reporting.validityState.current ) {
 						continue;
 					}
 					return false;
